@@ -1,0 +1,3 @@
+/home/oem/Projects/Operating systems/File-Synchronization/cmake-build-debug/CMakeFiles/File_Synchronization.dir
+/home/oem/Projects/Operating systems/File-Synchronization/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/oem/Projects/Operating systems/File-Synchronization/cmake-build-debug/CMakeFiles/rebuild_cache.dir
