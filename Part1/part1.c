@@ -33,7 +33,7 @@ void write_to_file(const char *filename,const char *message, int count) {
 
     for (int i = 0; i < count; i++) {
         if (write(fd, msg_with_newline, msg_len + 1) < 0) {
-            perror("write");
+            perror("failed to write to file");
             free(msg_with_newline);
             close(fd);
             exit(1);
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     // convert string value to int.
     int count = atoi(argv[4]);
 
-    const char *filename = "result.txt"; // the file which the output will be written to.
+    const char *filename = "output.txt"; // the file which the output will be written to.
     pid_t pid1, pid2; // id of the child processes
 
     // first fork

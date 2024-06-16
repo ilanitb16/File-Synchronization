@@ -55,6 +55,12 @@ build CMakeFiles/File_Synchronization.dir/Part1/part1.c.o: C_COMPILER__File_Sync
   OBJECT_DIR = CMakeFiles/File_Synchronization.dir
   OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part1
 
+build CMakeFiles/File_Synchronization.dir/Part2/part2.c.o: C_COMPILER__File_Synchronization_unscanned_Debug /home/oem/Projects/Operating$ systems/File-Synchronization/Part2/part2.c || cmake_object_order_depends_target_File_Synchronization
+  DEP_FILE = CMakeFiles/File_Synchronization.dir/Part2/part2.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/File_Synchronization.dir
+  OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part2
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target File_Synchronization
@@ -63,7 +69,7 @@ build CMakeFiles/File_Synchronization.dir/Part1/part1.c.o: C_COMPILER__File_Sync
 #############################################
 # Link the executable File_Synchronization
 
-build File_Synchronization: C_EXECUTABLE_LINKER__File_Synchronization_Debug CMakeFiles/File_Synchronization.dir/Part1/part1.c.o
+build File_Synchronization: C_EXECUTABLE_LINKER__File_Synchronization_Debug CMakeFiles/File_Synchronization.dir/Part1/part1.c.o CMakeFiles/File_Synchronization.dir/Part2/part2.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/File_Synchronization.dir
   POST_BUILD = :
