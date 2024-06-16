@@ -18,14 +18,40 @@ void write_to_file(const char *filename,const char *message, int count) {
         exit(1);
     }
 
+    size_t msg_len = strlen(message);
+    char *msg_with_newline = malloc(msg_len + 2);
+    if (!msg_with_newline) {
+        perror("malloc");
+        close(fd);
+        exit(1);
+    }
+
+    // Copy the message and append a newline character
+    strcpy(msg_with_newline, message);
+    msg_with_newline[msg_len] = '\n';
+    msg_with_newline[msg_len + 1] = '\0';
+
     for (int i = 0; i < count; i++) {
-        if (write(fd, message, strlen(message)) < 0) {
-            perror("failed to write to file");
+        if (write(fd, msg_with_newline, msg_len + 1) < 0) {
+            perror("write");
+            free(msg_with_newline);
             close(fd);
             exit(1);
         }
     }
 
+    free(msg_with_newline);
+
+//    for (int i = 0; i < count; i++) {
+//       //  write the message to the file.
+//        if (write(fd, message, strlen(message)) < 0) {
+//            perror("failed to write to file");
+//            close(fd);
+//            exit(1);
+//        }
+//    }
+
+    // close the file descriptor.
     if (close(fd) < 0) {
         perror("close");
         exit(1);
@@ -64,9 +90,12 @@ int main(int argc, char *argv[]) {
     }
     // this is the first process.
     if (pid1 == 0) {
-        write_to_file(filename, "First Child Process",count);
+        write_to_file(filename, child1_message,count);
         exit(0);
     }
+
+    // make sure child 1 finishes writing first.
+    waitpid(pid1, NULL, 0);
 
     // second fork
     pid2 = fork();
@@ -77,7 +106,7 @@ int main(int argc, char *argv[]) {
     }
     // this is the second process.
     if (pid2 == 0) {
-        write_to_file(filename, "Second Child Process",count);
+        write_to_file(filename, child2_message,count);
         exit(0);
     }
 
@@ -86,7 +115,7 @@ int main(int argc, char *argv[]) {
     waitpid(pid2, NULL, 0);
 
     // Parent writes to the file
-    write_to_file("output.txt", parent_message, count);
+    write_to_file(filename, parent_message, count);
 
     // finishing statement
     printf("Finished writing to file: %s\n", filename);
