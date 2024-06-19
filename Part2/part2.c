@@ -52,6 +52,7 @@ void write_to_file(const char *filename, const char *message, int count) {
 
     // writing the message as many times as needed.
     for (int i = 0; i < count; i++) {
+        write_message(message, count);
         if (fprintf(file, "%s\n", message) < 0) {
             perror("printf error");
             fclose(file);
@@ -82,15 +83,7 @@ int main(int argc, char *argv[]) {
     int order = atoi(argv[argc - 2]); // how many times each process writes
     int num_messages = argc - 3;
 
-    printf("count: %d\n", count);
-    printf("order: %d\n", order);
-    printf("num_messages: %d\n", num_messages);
-
-//    int count = atoi(argv[argc - 1]); // amount of times to repeat message
-//    int num_messages = argc - 3; // number of messages
-//    //int num_messages = argc - 2;
     const char *messages[num_messages]; // array to store messages
-//    const char *lockfile = "lockfile.lock";
 
     // add messages to array
     for (int i = 0; i < num_messages; i++) {
