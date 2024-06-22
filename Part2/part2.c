@@ -13,7 +13,7 @@
 // provided function to handle the printing with random delays.
 void write_message(const char *message, int count) {
     for (int i = 0; i < count; i++) {
-        printf("%s", message);
+        printf("%s\n", message);
         usleep((rand() % 100) * 1000); // Random delay between 0 and 99 milliseconds
     }
 }
@@ -21,16 +21,18 @@ void write_message(const char *message, int count) {
 // Implement a simple locking mechanism using a lock file. Each process should create the lock file before writing
 // and remove it after writing, ensuring mutual exclusion.
 
-void acquire_lock() {
+int acquire_lock() {
     // before a process starts writing, it opens the lock file. If it fails, the process will retry writing after 1ms
     int fd;
     while ((fd = open(LOCKFILE, O_CREAT | O_EXCL, 0644)) < 0) {
         usleep(1000); // Sleep for 1ms before trying again
     }
-    close(fd);
+    return fd;
 }
 
-void release_lock() {
+void release_lock(int fd) {
+    close(fd);
+
     // delete lock file after writing in order to allow others to write to lock
     if (unlink(LOCKFILE) < 0) {
         perror("unlink failed.");
@@ -40,48 +42,48 @@ void release_lock() {
 
 void write_to_file(const char *filename, const char *message, int count) {
   // lock the file so others don't have access.
-    acquire_lock();
+    int fd = acquire_lock();
 
     // opening the file
     FILE *file = fopen(filename, "a");
     if (file == NULL) {
         perror("failed to open");
-        release_lock();
+        release_lock(fd);
         exit(1);
     }
 
     // writing the message as many times as needed.
-    for (int i = 0; i < count; i++) {
+
         write_message(message, count);
         if (fprintf(file, "%s\n", message) < 0) {
             perror("printf error");
             fclose(file);
-            release_lock();
+            release_lock(fd);
             exit(1);
         }
-    }
+
 
     if (fclose(file) != 0) {
         perror("faild close the file");
-        release_lock();
+        release_lock(fd);
         exit(1);
     }
 
     // releasing lock after finishing writing.
-    release_lock();
+    release_lock(fd);
 }
 
 int main(int argc, char *argv[]) {
    // Ensure the program accepts the necessary arguments for the messages, the order of writing, and the count of writes.
    // input: number of messages, number of prints fror each process
-    if (argc < 6) {
-        fprintf(stderr, "Usage: %s <message1> <message2> ... <order> <count>", argv[0]) ;
+
+    if (argc < 4) {
+        fprintf(stderr, "Usage: %s <message1> <message2> ... <count>", argv[0]) ;
         return 1;
     }
 
-    int count = atoi(argv[argc - 1]); // number of times to print ,essage
-    int order = atoi(argv[argc - 2]); // how many times each process writes
-    int num_messages = argc - 3;
+    int count = atoi(argv[argc - 1]); // number of times to print ,message
+    int num_messages = argc - 2;
 
     const char *messages[num_messages]; // array to store messages
 
@@ -98,8 +100,8 @@ int main(int argc, char *argv[]) {
         if ((pids[i] = fork()) < 0) {
             perror("fork");
             exit(1);
-        } else if (pids[i] == 0) {
-            //writing to file
+        }
+        if (pids[i] == 0) {
             write_to_file(OUTPUTFILE, messages[i], count);
             exit(0);
         }
