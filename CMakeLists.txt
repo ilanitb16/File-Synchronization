@@ -6,3 +6,6 @@ set(CMAKE_C_STANDARD 11)
 add_executable(File_Synchronization
         Part1/part1.c
         Part2/part2.c)
+#        Part3/buffered_open.h
+#        Part3/main.c
+#        Part3/buffered_open.c)

@@ -49,17 +49,17 @@ cmake_ninja_workdir = /home/oem/Projects/Operating$ systems/File-Synchronization
 
 build cmake_object_order_depends_target_File_Synchronization: phony || CMakeFiles/File_Synchronization.dir
 
-build CMakeFiles/File_Synchronization.dir/Part1/part1.c.o: C_COMPILER__File_Synchronization_unscanned_Debug /home/oem/Projects/Operating$ systems/File-Synchronization/Part1/part1.c || cmake_object_order_depends_target_File_Synchronization
-  DEP_FILE = CMakeFiles/File_Synchronization.dir/Part1/part1.c.o.d
+build CMakeFiles/File_Synchronization.dir/Part3/main.c.o: C_COMPILER__File_Synchronization_unscanned_Debug /home/oem/Projects/Operating$ systems/File-Synchronization/Part3/main.c || cmake_object_order_depends_target_File_Synchronization
+  DEP_FILE = CMakeFiles/File_Synchronization.dir/Part3/main.c.o.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/File_Synchronization.dir
-  OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part1
+  OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part3
 
-build CMakeFiles/File_Synchronization.dir/Part2/part2.c.o: C_COMPILER__File_Synchronization_unscanned_Debug /home/oem/Projects/Operating$ systems/File-Synchronization/Part2/part2.c || cmake_object_order_depends_target_File_Synchronization
-  DEP_FILE = CMakeFiles/File_Synchronization.dir/Part2/part2.c.o.d
+build CMakeFiles/File_Synchronization.dir/Part3/buffered_open.c.o: C_COMPILER__File_Synchronization_unscanned_Debug /home/oem/Projects/Operating$ systems/File-Synchronization/Part3/buffered_open.c || cmake_object_order_depends_target_File_Synchronization
+  DEP_FILE = CMakeFiles/File_Synchronization.dir/Part3/buffered_open.c.o.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/File_Synchronization.dir
-  OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part2
+  OBJECT_FILE_DIR = CMakeFiles/File_Synchronization.dir/Part3
 
 
 # =============================================================================
@@ -69,7 +69,7 @@ build CMakeFiles/File_Synchronization.dir/Part2/part2.c.o: C_COMPILER__File_Sync
 #############################################
 # Link the executable File_Synchronization
 
-build File_Synchronization: C_EXECUTABLE_LINKER__File_Synchronization_Debug CMakeFiles/File_Synchronization.dir/Part1/part1.c.o CMakeFiles/File_Synchronization.dir/Part2/part2.c.o
+build File_Synchronization: C_EXECUTABLE_LINKER__File_Synchronization_Debug CMakeFiles/File_Synchronization.dir/Part3/main.c.o CMakeFiles/File_Synchronization.dir/Part3/buffered_open.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/File_Synchronization.dir
   POST_BUILD = :

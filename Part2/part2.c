@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
    // Ensure the program accepts the necessary arguments for the messages, the order of writing, and the count of writes.
    // input: number of messages, number of prints fror each process
 
-    if (argc < 4) {
+    if (argc < 3) {
         fprintf(stderr, "Usage: %s <message1> <message2> ... <count>", argv[0]) ;
         return 1;
     }
@@ -115,6 +115,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    printf("Finished writing to file: %s\n", OUTPUTFILE);
+  //  printf("Finished writing to file: %s\n", OUTPUTFILE);
     return 0;
 }

@@ -1,10 +1,10 @@
 First message
 First message
 First message
-Second message
-Second message
-Second message
 Third message
 Third message
 Third message
+Second message
+Second message
+Second message
 Finished writing to file: output2.txt
