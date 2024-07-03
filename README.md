@@ -9,13 +9,13 @@ Synchronizing file access, implement a synchronization lock for file access , a 
 
 
 ## Part2 Output:
-- ``` cd Part2```
+- ```cd Part2```
 - ```gcc part2.c -o part2```
 - example of input: ```./part2 "First message" "Second message" "Third message" 3 > output2.txt```
 - ![image](https://github.com/ilanitb16/File-Synchronization/assets/97344492/dd1f3e1e-aecf-495b-88e4-55dc727819f8)
 
 ## Part3 Output:
-- ``` cd Part3```
+- ```cd Part3```
 -  Run the project / run the tests by extracting them from the tests folder (and adding the files to ```Part3```, then executing ```./script.sh```
 
 All tests completed: 
@@ -24,7 +24,7 @@ All tests completed:
 
 ### Part4 Output:
 
-- ``` cd Part4```
+- ```cd Part4```
 - Execute the following commands:
   ```
   gcc -c copytree.c -o copytree.o
