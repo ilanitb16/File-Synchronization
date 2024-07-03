@@ -59,11 +59,6 @@ void write_to_file(const char *filename,const char *message, int count) {
 
 }
 
-//void child_process(const char *filename, const char *process_name) {
-//    write_to_file(process_name,"hi", filename);
-//    exit(0);
-//}
-
 int main(int argc, char *argv[]) {
     // The program should accept input params to specify the messages and number of times each process writes to file.
     if (argc != 5) {
