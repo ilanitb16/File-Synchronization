@@ -18,4 +18,8 @@ Synchronizing file access, implement a synchronization lock for file access , a 
 - ``` cd Part3```
 - run the project 
 
+All tests completed: 
+
+![image](https://github.com/ilanitb16/File-Synchronization/assets/97344492/47faf584-b6b5-4777-a1eb-5c6e7a4b7b0d)
+
 
